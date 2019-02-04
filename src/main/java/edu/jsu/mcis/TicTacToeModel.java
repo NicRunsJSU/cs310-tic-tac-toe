@@ -94,9 +94,28 @@ public class TicTacToeModel {
            toggle "xTurn" from true to false (or vice-versa) to switch to the
            other player before returning TRUE.  Otherwise, return FALSE. */
         
-        // INSERT YOUR CODE HERE
+        // DONE
 
-        
+        if (isValidSquare(row, col)) {
+
+            if (!isSquareMarked(row, col)) {
+
+                if (isXTurn()){
+
+                    board[row][col] = Mark.X;
+                    isXTurn = !isXTurn;
+
+                }
+                else {
+
+                    board[row][col] = Mark.O;
+                    isXTurn = !isXTurn;
+
+                }
+
+            }
+
+        }
         
         return false; // remove this line later!
         
@@ -126,12 +145,12 @@ public class TicTacToeModel {
         
         // DONE 
 
-        if (Mark[row][col].equals(Mark.O)) {
+        if (board[row][col].equals(Mark.O)) {
             
             return true;
 
         }
-        if (Mark[row][col].equals(Mark.X)) {
+        if (board[row][col].equals(Mark.X)) {
 
              return true;
         }
@@ -145,7 +164,9 @@ public class TicTacToeModel {
         
         // INSERT YOUR CODE HERE
 
-        return null; // remove this line later!
+        
+
+        return board[row][col];
             
     }
 	
@@ -163,12 +184,103 @@ public class TicTacToeModel {
 	
     private boolean isMarkWin(Mark mark) {
         
+        int markCounter;
+        boolean win = false;
+        Mark markBeingTested;
+
+
         /* Check the squares of the board to see if the specified mark is the
            winner */
         
         // INSERT YOUR CODE HERE
 
-        return false; // remove this line later!
+        // Determine Which Mark to Test For
+        if (isXTurn()) {
+
+            markBeingTested = Mark.X;
+
+        }
+        else {
+
+            markBeingTested = Mark.Y;
+
+        }
+
+        // Win Condition For a Row
+
+        for ( row = 0; row < board.length; ++row) {
+
+            markCounter = 0;
+
+            for (col = 0; col < board.length; ++col) {
+
+                if (board[row][col].equals(markBeingTested)) {
+                    
+                    ++markCounter;
+
+                    if (markCounter == board.length) {
+
+                        win = true;
+                    }
+                }
+                else {
+                    markCounter = 0;
+                }
+            }
+        }
+
+        // Win Condition For Column 
+
+        for (int col = 0; col < board.length; ++col) {
+            
+            markCounter = 0;
+            
+            for (int row = 0; row < board.length; ++row) {
+                
+                if (board[row][col].equals(markBeingTested)) {
+                    
+                    ++markCounter;
+                    
+                    if (markCounter == board.length) {
+                        
+                        win = true;
+                
+                    }
+                }
+                else {
+
+                    markCounter = 0;
+
+                }
+            }
+        }
+
+        // Win Condition for Diagnal from [0][0] to [board.length][board.length]
+        
+        markCounter = 0;
+        
+        for (int i = 0; i < board.length; ++ i) {
+            
+            squareBeingTestedMark = board[i][i];
+            
+            if (squareBeingTestedMark.equals(markBeingTested)) {
+                
+                ++markCounter;
+                
+                if (markCounter == board.length) {
+                    
+                    win = true;
+                    //System.out.println("WIN Condition 3");
+                }
+            }
+            else {
+
+                markCounter = 0;
+
+            }
+        }
+
+        return win; // remove this line later!
 
     }
 	
