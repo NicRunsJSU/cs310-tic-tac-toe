@@ -81,7 +81,7 @@ public class TicTacToeModel {
 
             for (int q = 0; q < width; ++q) {
 
-                Mark[i][q] = Mark.EMPTY;
+                board[i][q] = Mark.EMPTY;
             }
         }
     }
@@ -103,13 +103,13 @@ public class TicTacToeModel {
                 if (isXTurn()){
 
                     board[row][col] = Mark.X;
-                    isXTurn = !isXTurn;
+                    xTurn = ! xTurn;
 
                 }
                 else {
 
                     board[row][col] = Mark.O;
-                    isXTurn = !isXTurn;
+                    xTurn = !! xTurn;
 
                 }
 
@@ -162,9 +162,7 @@ public class TicTacToeModel {
         
         /* Return the mark from the square at the specified location */
         
-        // INSERT YOUR CODE HERE
-
-        
+        // DONE
 
         return board[row][col];
             
@@ -176,7 +174,28 @@ public class TicTacToeModel {
            TIE, or if the game is not over.  Return the corresponding Result
            value */
         
-        // INSERT YOUR CODE HERE
+        // Done
+
+        if (isXTurn()) {
+
+            if (isMarkWin(Mark.X)) {
+
+                return Result.X;
+            }
+        }
+        else if (!isXTurn()) {
+
+            if (isMarkWin(Mark.O)) {
+
+                return Result.O;
+            }
+
+        }
+        else if (isTie()) {
+
+            return Result.TIE;
+
+        }
 
         return null; // remove this line later!
         
@@ -192,7 +211,7 @@ public class TicTacToeModel {
         /* Check the squares of the board to see if the specified mark is the
            winner */
         
-        // INSERT YOUR CODE HERE
+        // DONE
 
         // Determine Which Mark to Test For
         if (isXTurn()) {
@@ -202,17 +221,17 @@ public class TicTacToeModel {
         }
         else {
 
-            markBeingTested = Mark.Y;
+            markBeingTested = Mark.O;
 
         }
 
         // Win Condition For a Row
 
-        for ( row = 0; row < board.length; ++row) {
+        for ( int row = 0; row < board.length; ++row) {
 
             markCounter = 0;
 
-            for (col = 0; col < board.length; ++col) {
+            for (int col = 0; col < board.length; ++col) {
 
                 if (board[row][col].equals(markBeingTested)) {
                     
@@ -261,7 +280,7 @@ public class TicTacToeModel {
         
         for (int i = 0; i < board.length; ++ i) {
             
-            squareBeingTestedMark = board[i][i];
+            Mark squareBeingTestedMark = board[i][i];
             
             if (squareBeingTestedMark.equals(markBeingTested)) {
                 
@@ -280,7 +299,30 @@ public class TicTacToeModel {
             }
         }
 
-        return win; // remove this line later!
+        // Win Condition for Diagnal from [0][board.length] to [board.length][0]
+        
+        markCounter = 0;
+        
+        for (int i = 0; i < board.length; ++ i) {
+            
+            Mark squareBeingTestedMark = board[i][ board.length - i - 1];
+            
+            if (squareBeingTestedMark.equals(markBeingTested)) {
+                
+                ++markCounter;
+                
+                if (markCounter == board.length) {
+                    
+                    win = true;
+                    //System.out.println("WIN Condition 4");
+                }
+            }
+            else {
+                markCounter = 0;
+            }
+        }
+
+        return win; 
 
     }
 	
@@ -288,10 +330,25 @@ public class TicTacToeModel {
         
         /* Check the squares of the board to see if the game is a tie */
         
-        // INSERT YOUR CODE HERE
+        // DONE
+        int spotOccupied = 0;
+        boolean tie = false;
 
-        return false; // remove this line later!
-        
+        for (int row = 0; row < board.length; ++row) {
+            for(int col = 0; col < board.length; ++col) {
+
+                if (board[row][col].equals(Mark.O) || board[row][col].equals((Mark.X))){
+
+                    ++spotOccupied;
+
+                    if (spotOccupied == board.length * board.length) {
+
+                        tie = true;
+                    }
+                }
+            }
+        }
+        return tie;   
     }
 
     public boolean isGameover() {
