@@ -27,19 +27,27 @@ public class TicTacToeController {
 
         // DONE
 
-        TicTacToeMove playerMove;
+        boolean runGame = true;
 
-        view.showBoard(model.toString());
+        while (runGame) {
 
-        playerMove = view.getNextMove(model.isXTurn());
+            TicTacToeMove playerMove;
 
-        if ( model.makeMark(playerMove.getRow(), playerMove.getCol()));
+            view.showBoard(model.toString());
 
-        else {
-            view.showInputError();
+            playerMove = view.getNextMove(model.isXTurn());
 
-       }
-        
+            if ( model.makeMark(playerMove.getRow(), playerMove.getCol()));
+
+            else {
+                view.showInputError();
+            }
+            
+            if (model.isGameover()) {
+
+                
+            }
+    }
         /* After the game is over, show the final board and the winner */
 
         view.showBoard(model.toString());

@@ -177,29 +177,30 @@ public class TicTacToeModel {
            value */
         
         // Done
+        Result gameResult = Result.NONE;
 
         if (isXTurn()) {
 
             if (isMarkWin(Mark.X)) {
 
-                return Result.X;
+                gameResult =  Result.X;
             }
         }
         else if (!isXTurn()) {
 
             if (isMarkWin(Mark.O)) {
 
-                return Result.O;
+                gameResult =  Result.O;
             }
 
         }
         else if (isTie()) {
 
-            return Result.TIE;
+            gameResult =  Result.TIE;
 
         }
 
-        return null; // remove this line later!
+        return gameResult; 
         
     }
 	
@@ -384,9 +385,9 @@ public class TicTacToeModel {
         
         /* Output the board contents as a string (see examples) */
         
-        // INSERT YOUR CODE HERE
+        // DONE
 
-        output.append(" ");
+        
 
         for  (int boardLabel = 0; boardLabel < board.length; ++boardLabel) {
 
@@ -406,12 +407,6 @@ public class TicTacToeModel {
             output.append("\n");
 
         }
-
-
-
-        
-
-        
         return output.toString();
         
     }
