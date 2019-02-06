@@ -119,7 +119,7 @@ public class TicTacToeModel {
 
         }
         
-        return moveOkayYes; // remove this line later!
+        return moveOkayYes; 
         
     }
 	
@@ -387,7 +387,7 @@ public class TicTacToeModel {
         
         // DONE
 
-        
+        output.append("");
 
         for  (int boardLabel = 0; boardLabel < board.length; ++boardLabel) {
 

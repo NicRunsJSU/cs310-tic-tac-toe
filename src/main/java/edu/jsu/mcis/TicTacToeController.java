@@ -37,16 +37,21 @@ public class TicTacToeController {
 
             playerMove = view.getNextMove(model.isXTurn());
 
-            if ( model.makeMark(playerMove.getRow(), playerMove.getCol()));
+            if ( model.makeMark(playerMove.getRow(), playerMove.getCol())) {
 
+                model.getResult();
+
+                if (model.isGameOver()) {
+
+                    runGame = false;
+
+                }
+            }
+            
             else {
                 view.showInputError();
             }
             
-            if (model.isGameover()) {
-
-                
-            }
     }
         /* After the game is over, show the final board and the winner */
 
