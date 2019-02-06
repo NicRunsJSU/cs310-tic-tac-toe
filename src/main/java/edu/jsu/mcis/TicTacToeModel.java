@@ -106,12 +106,14 @@ public class TicTacToeModel {
 
                     board[row][col] = Mark.X;
                     xTurn = ! xTurn;
+                    
 
                 }
                 else {
 
                     board[row][col] = Mark.O;
                     xTurn = ! xTurn;
+                   
 
                 }
 
@@ -129,9 +131,9 @@ public class TicTacToeModel {
         
         // DONE
 
-        if (row < board.length) {
+        if (row < board.length  && row >= 0) {
             
-            if (col < board.length) {
+            if (col < board.length && col >= 0) {
 
                 return true;
             }
@@ -179,21 +181,20 @@ public class TicTacToeModel {
         // Done
         Result gameResult = Result.NONE;
 
-        if (isXTurn()) {
+        
 
-            if (isMarkWin(Mark.X)) {
+        if (isMarkWin(Mark.X)) {
 
-                gameResult =  Result.X;
-            }
+            gameResult =  Result.X;
         }
-        else if (!isXTurn()) {
+        
 
-            if (isMarkWin(Mark.O)) {
+        else if (isMarkWin(Mark.O)) {
 
-                gameResult =  Result.O;
-            }
+            gameResult =  Result.O;
 
         }
+        
         else if (isTie()) {
 
             gameResult =  Result.TIE;
@@ -217,16 +218,7 @@ public class TicTacToeModel {
         // DONE
 
         // Determine Which Mark to Test For
-        if (isXTurn()) {
-
-            markBeingTested = Mark.X;
-
-        }
-        else {
-
-            markBeingTested = Mark.O;
-
-        }
+        markBeingTested = mark;
 
         // Win Condition For a Row
 
@@ -245,10 +237,9 @@ public class TicTacToeModel {
                         win = true;
                     }
                 }
-                else {
-                    markCounter = 0;
-                }
+                
             }
+            markCounter = 0;
         }
 
         // Win Condition For Column 
@@ -269,11 +260,7 @@ public class TicTacToeModel {
                 
                     }
                 }
-                else {
-
-                    markCounter = 0;
-
-                }
+                
             }
         }
 

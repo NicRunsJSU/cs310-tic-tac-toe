@@ -27,38 +27,31 @@ public class TicTacToeController {
 
         // DONE
 
-        boolean runGame = true;
+        TicTacToeMove playerMove;      
 
-        while (runGame) {
+        while (!model.isGameover()) {
 
-            TicTacToeMove playerMove;
 
             view.showBoard(model.toString());
 
             playerMove = view.getNextMove(model.isXTurn());
+            
 
-            if ( model.makeMark(playerMove.getRow(), playerMove.getCol())) {
-
-                model.getResult();
-
-                if (model.isGameOver()) {
-
-                    runGame = false;
-
-                }
-            }
+            if ( model.makeMark(playerMove.getRow(), playerMove.getCol()));
             
             else {
                 view.showInputError();
             }
+            model.getResult();
+        }
             
-    }
+    
         /* After the game is over, show the final board and the winner */
 
         view.showBoard(model.toString());
 
         view.showResult(model.getResult().toString());
         
+        
     }
-
 }
