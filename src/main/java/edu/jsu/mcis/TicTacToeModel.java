@@ -95,10 +95,12 @@ public class TicTacToeModel {
            other player before returning TRUE.  Otherwise, return FALSE. */
         
         // DONE
+        boolean moveOkayYes = false;
 
         if (isValidSquare(row, col)) {
 
             if (!isSquareMarked(row, col)) {
+                moveOkayYes = true;
 
                 if (isXTurn()){
 
@@ -109,7 +111,7 @@ public class TicTacToeModel {
                 else {
 
                     board[row][col] = Mark.O;
-                    xTurn = !! xTurn;
+                    xTurn = ! xTurn;
 
                 }
 
@@ -117,7 +119,7 @@ public class TicTacToeModel {
 
         }
         
-        return false; // remove this line later!
+        return moveOkayYes; // remove this line later!
         
     }
 	
@@ -127,9 +129,9 @@ public class TicTacToeModel {
         
         // DONE
 
-        if (row < this.width) {
+        if (row < board.length) {
             
-            if (col < this.width) {
+            if (col < board.length) {
 
                 return true;
             }
@@ -383,6 +385,32 @@ public class TicTacToeModel {
         /* Output the board contents as a string (see examples) */
         
         // INSERT YOUR CODE HERE
+
+        output.append(" ");
+
+        for  (int boardLabel = 0; boardLabel < board.length; ++boardLabel) {
+
+            output.append(boardLabel);
+        }
+        output.append("\n\n");
+
+        for (int row = 0; row < board.length; ++row) {
+
+            output.append(row + " ");
+
+            for (int col = 0; col < board.length; ++col) {
+
+                output.append(board[row][col]);
+
+            }
+            output.append("\n");
+
+        }
+
+
+
+        
+
         
         return output.toString();
         
