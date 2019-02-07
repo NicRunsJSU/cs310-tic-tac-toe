@@ -42,21 +42,41 @@ public class TicTacToeView extends JPanel {
 
     }
         
-    public void updateSquares() {
+    public void updateSquares(JButton buttonPressed, boolean xTurn, boolean makeMark) {
 
         /* Refresh the GUI with updated data from the Model (via the Controller) */
 
-        // INSERT YOUR CODE HERE
+        // DONE
 
-    }
+        if (makeMark) { 
+       
+            if (xTurn) {
+               
+                b.setText("X");
+           
+            }
+           else {
+                
+               b.setText("O");
+                
+           }    
+       }
+
+
+        }
+
     
-    public void disableSquares() {
+    
+    public void disableSquares(int row, int col) {
 
         /* Disable buttons (to disallow input after game is over) */
     
-        // INSERT YOUR CODE HERE
-            
+        //DONE
+
+        board[row][col].setEnabled(false);
+              
     }
+
         
     public void showResult(String message) {
         
