@@ -10,6 +10,7 @@ public class TicTacToeModel {
     
     /* Mark (represents X, O, or an empty square */
     
+    
     public enum Mark {
         
         X("X"), 
