@@ -16,49 +16,11 @@ public class TicTacToeController implements ActionListener{
         /* Initialize model, view, and width */
 
         model = new TicTacToeModel(width);
-        view = new TicTacToeView();
+        view = new TicTacToeView(this, width);
         
     }
 
-    public void start() {
     
-        /* MAIN LOOP (repeats until game is over) */
-
-        /* Display the board using the View's "showBoard()", then use
-           "getNextMove()" to get the next move from the player.  Enter
-           the move (using the Model's "makeMark()", or display an error
-           using the View's "showInputError()" if the move is invalid. */
-
-        // DONE
-
-        TicTacToeMove playerMove;      
-
-        while (!model.isGameover()) {
-
-
-            view.showBoard(model.toString());
-
-            playerMove = view.getNextMove(model.isXTurn());
-            
-
-            if ( model.makeMark(playerMove.getRow(), playerMove.getCol()));
-            
-            else {
-                view.showInputError();
-            }
-            model.getResult();
-        }
-            
-    
-        /* After the game is over, show the final board and the winner */
-
-        view.showBoard(model.toString());
-
-        view.showResult(model.getResult().toString());
-        
-        
-    }
-
     public String getMarkAsString(int row, int col) {  
 
         return (model.getMark(row, col).toString());        
@@ -83,9 +45,6 @@ public class TicTacToeController implements ActionListener{
             
             int buttonRow = 0;
             int buttonCol = 0;
-
-            int row = 0;
-            int col = 0;
 
             Character charRow;
             Character charCol;

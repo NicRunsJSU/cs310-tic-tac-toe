@@ -52,12 +52,12 @@ public class TicTacToeView extends JPanel {
        
             if (xTurn) {
                
-                b.setText("X");
+                buttonPressed.setText("X");
            
             }
            else {
                 
-               b.setText("O");
+               buttonPressed.setText("O");
                 
            }    
        }

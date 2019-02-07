@@ -1,6 +1,8 @@
 package edu.jsu.mcis;
 
 import javax.swing.JFrame;
+import java.awt.EventQueue;
+import javax.swing.JButton;
 
 public class TicTacToe {
     
@@ -22,10 +24,12 @@ public class TicTacToe {
             catch(NumberFormatException e) {}
             
         }
+        int startWidth = width;
         
         /* Create Controller */
+        EventQueue.invokeLater(() -> {
 
-        TicTacToeController controller = new TicTacToeController(width);
+        TicTacToeController controller = new TicTacToeController(startWidth);
         
         /* Start Main Loop */
         
@@ -34,6 +38,7 @@ public class TicTacToe {
         win.add(controller.getView());
         win.pack();
         win.setVisible(true);
+        });
         
     }
     
